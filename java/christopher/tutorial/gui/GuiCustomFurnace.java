@@ -6,6 +6,7 @@ import christopher.tutorial.container.ContainerCustomFurnace;
 import christopher.tutorial.tileentity.TileEntityCustomFurnace;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,12 +17,13 @@ public class GuiCustomFurnace extends GuiContainer
 	private static final ResourceLocation background = new ResourceLocation(Reference.MODID + ":textures/gui/container/furnace.png");
 	private final InventoryPlayer playerInv;
 	public TileEntityCustomFurnace tileFurnace;
+	private Object TileEntityCustomFurnace;
 	
 	public GuiCustomFurnace(InventoryPlayer playerInventory, TileEntityCustomFurnace furnaceInventory) 
 	{
 		super(new ContainerCustomFurnace(playerInventory, furnaceInventory));
 		playerInv = playerInventory;
-		tileFurnace = furnaceInventory;
+		TileEntityCustomFurnace = furnaceInventory;
 	}
 	
 	@Override
@@ -31,10 +33,9 @@ public class GuiCustomFurnace extends GuiContainer
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		this.renderHoveredToolTip(mouseX, mouseY);
 	}
-	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) 
+	protected void drawGuiContainerBackgroundLayer(int mouseX, int mouseY) 
 	{
-		String name = tileFurnace.getDisplayName().getUnformattedText();
+		String name = ((TileEntityLockable) TileEntityCustomFurnace).getDisplayName().getUnformattedText();
 		fontRenderer.drawString(name, this.xSize / 2 - this.fontRenderer.getStringWidth(name) / 2, 6, 4210752);
 		fontRenderer.drawString(playerInv.getDisplayName().getUnformattedText(), 117, this.ySize - 96 + 2, 4210752);
 	}
@@ -48,7 +49,7 @@ public class GuiCustomFurnace extends GuiContainer
         int j = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(i, j, 0, 0, this.xSize, this.ySize);
         
-        if(tileFurnace.isBurning())
+        if(((christopher.tutorial.tileentity.TileEntityCustomFurnace) TileEntityCustomFurnace).isBurning())
         {
         	int k = this.getBurnLeftScaled(42);
         	int m = 40 - k;
@@ -61,20 +62,20 @@ public class GuiCustomFurnace extends GuiContainer
     
     private int getCookProgressScaled(int pixels)
     {
-        int i = this.tileFurnace.getField(2);
-        int j = this.tileFurnace.getField(3);
+        int i = ((TileEntityCustomFurnace) this.TileEntityCustomFurnace).getField(2);
+        int j = ((TileEntityCustomFurnace) this.TileEntityCustomFurnace).getField(3);
         return j != 0 && i != 0 ? i * pixels / j : 0;
     }
 
     private int getBurnLeftScaled(int pixels)
     {
-        int i = this.tileFurnace.getField(1);
+        int i = ((TileEntityCustomFurnace) this.TileEntityCustomFurnace).getField(1);
 
         if (i == 0)
         {
             i = 200;
         }
 
-        return this.tileFurnace.getField(0) * pixels / i;
+        return ((TileEntityCustomFurnace) this.TileEntityCustomFurnace).getField(0) * pixels / i;
     }
 }
