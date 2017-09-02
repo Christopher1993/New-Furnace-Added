@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "christopher:custom_furnace_idle"
+    ]
+  },
+  "criteria": {
+    "has_diamond_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "christopher:diamond_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "christopher:custom_furnace_idle"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_diamond_brick",
+      "has_the_recipe"
+    ]
+  ]
+}
