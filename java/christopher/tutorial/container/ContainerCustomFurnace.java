@@ -25,8 +25,8 @@ public class ContainerCustomFurnace extends Container
 	public ContainerCustomFurnace(InventoryPlayer playerInventory, IInventory furnaceInventory)
 	{
 		this.TileEntityCustomFurnace = furnaceInventory;
-        this.addSlotToContainer(new Slot(furnaceInventory, 0, 56, 35));
-        this.addSlotToContainer(new SlotFurnaceFuel(furnaceInventory, 1, 8, 62));
+        this.addSlotToContainer(new Slot(furnaceInventory, 0, 56, 17));
+        this.addSlotToContainer(new SlotFurnaceFuel(furnaceInventory, 1, 56, 53));
         this.addSlotToContainer(new SlotFurnaceOutput(playerInventory.player, furnaceInventory, 2, 116, 35));
         
         for (int i = 0; i < 3; ++i)
