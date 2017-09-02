@@ -3,8 +3,10 @@ package christopher.tutorial.gui;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import christopher.tutorial.Reference;
 import christopher.tutorial.container.ContainerCustomFurnace;
+import christopher.tutorial.init.BlockInit;
 import christopher.tutorial.tileentity.TileEntityCustomFurnace;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ResourceLocation;
@@ -33,9 +35,9 @@ public class GuiCustomFurnace extends GuiContainer
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		this.renderHoveredToolTip(mouseX, mouseY);
 	}
-	protected void drawGuiContainerBackgroundLayer(int mouseX, int mouseY) 
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) 
 	{
-		String name = ((TileEntityLockable) TileEntityCustomFurnace).getDisplayName().getUnformattedText();
+		String name = I18n.format(BlockInit.custom_furnace_idle.getUnlocalizedName() + ".name");
 		fontRenderer.drawString(name, this.xSize / 2 - this.fontRenderer.getStringWidth(name) / 2, 6, 4210752);
 		fontRenderer.drawString(playerInv.getDisplayName().getUnformattedText(), 117, this.ySize - 96 + 2, 4210752);
 	}
@@ -51,13 +53,12 @@ public class GuiCustomFurnace extends GuiContainer
         
         if(((christopher.tutorial.tileentity.TileEntityCustomFurnace) TileEntityCustomFurnace).isBurning())
         {
-        	int k = this.getBurnLeftScaled(42);
-        	int m = 40 - k;
-        	drawTexturedModalRect(guiLeft + 29, guiTop + 65, 176, 0, 40 - m, 10);
+        	int k = this.getBurnLeftScaled(13);
+        	this.drawTexturedModalRect(i + 56, j + 36 + 12 - k, 176, 12 - k, 14, k + 1);
         }
         
         int l = this.getCookProgressScaled(24);
-        drawTexturedModalRect(i + 79, j + 38, 176, 14, l + 1, 17);
+        this.drawTexturedModalRect(i + 79, j + 34, 176, 14, l + 1, 16);
     }
     
     private int getCookProgressScaled(int pixels)
