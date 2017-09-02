@@ -40,7 +40,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CustomBlockFurnace extends BlockContainer
 {
-	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.6875D, 1.0D);
 	
 	private EntityPlayer player;
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
@@ -146,6 +145,8 @@ public class CustomBlockFurnace extends BlockContainer
                     worldIn.spawnParticle(EnumParticleTypes.FLAME, d0 + d4, d1, d2 + 0.52D, 0.0D, 0.0D, 0.0D);
             }
         }
+    
+    
     }
     
     @Override
@@ -279,16 +280,6 @@ public class CustomBlockFurnace extends BlockContainer
     	return BlockRenderLayer.TRANSLUCENT;
     }
     
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
-    {
-    	return BOUNDING_BOX;
-    }
-    
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
-    {
-    	addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
-    }
+
     
 }
