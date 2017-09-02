@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "christopher:diamond_brick_slab_half"
+    ]
+  },
+  "criteria": {
+    "has_diamond_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "christopher:diamond_brick"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "christopher:diamond_brick_slab_half"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_diamond_brick",
+      "has_the_recipe"
+    ]
+  ]
+}

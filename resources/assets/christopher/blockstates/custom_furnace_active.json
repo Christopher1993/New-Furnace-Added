@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "christopher:custom_furnace_active", "y": 180 },
+        "facing=south": { "model": "christopher:custom_furnace_active", "y": 0 },
+        "facing=west":  { "model": "christopher:custom_furnace_active", "y": 90 },
+        "facing=east":  { "model": "christopher:custom_furnace_active","y": 270  }
+    }
+}        
