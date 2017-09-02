@@ -39,7 +39,7 @@ public class BlockInit
 		diamond_brick_fence = new DiamondBrickFence("diamond_brick_fence", 45.0F, 25000000.0F);
 		diamond_brick_fence_gate = new DiamondBrickFenceGate("diamond_brick_fence_gate", 45.0F, 25000000.0F);
 		custom_furnace_active = new CustomBlockFurnace("custom_furnace_active", 45.0F, 25000000.0F, true);
-		custom_furnace_idle = new CustomBlockFurnace("custom_furnace_idle", 45.0F, 25000000.0F, true);
+		custom_furnace_idle = new CustomBlockFurnace("custom_furnace_idle", 45.0F, 25000000.0F, false);
 	}
 	
 	public static void register()
