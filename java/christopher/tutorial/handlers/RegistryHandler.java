@@ -28,5 +28,8 @@ public class RegistryHandler
 		
 		ArmorInit.init();
 		ArmorInit.register();
+		
+		TileEntityHandler.register();
+		GUIHandler.register();
 	}
 }
