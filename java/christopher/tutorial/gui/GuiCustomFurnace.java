@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiCustomFurnace extends GuiContainer
 {
-	private static final ResourceLocation background = new ResourceLocation(Reference.MODID + ":textures/gui/furnace.png");
+	private static final ResourceLocation background = new ResourceLocation(Reference.MODID + ":textures/gui/furnace_gui.png");
 	private final InventoryPlayer playerInv;
 	public TileEntityCustomFurnace tileFurnace;
 	private Object TileEntityCustomFurnace;
