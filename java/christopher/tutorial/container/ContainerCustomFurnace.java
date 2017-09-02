@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ContainerCustomFurnace extends Container
 {
-	private final IInventory tilefurnace;
+	private final IInventory TileEntityCustomFurnace;
 	private int cooktime;
 	private int totalcooktime;
 	private int furnaceburntime;
@@ -24,7 +24,7 @@ public class ContainerCustomFurnace extends Container
 	
 	public ContainerCustomFurnace(InventoryPlayer playerInventory, IInventory furnaceInventory)
 	{
-		this.tilefurnace = furnaceInventory;
+		this.TileEntityCustomFurnace = furnaceInventory;
         this.addSlotToContainer(new Slot(furnaceInventory, 0, 56, 35));
         this.addSlotToContainer(new SlotFurnaceFuel(furnaceInventory, 1, 8, 62));
         this.addSlotToContainer(new SlotFurnaceOutput(playerInventory.player, furnaceInventory, 2, 116, 35));
@@ -46,7 +46,7 @@ public class ContainerCustomFurnace extends Container
 	public void addListener(IContainerListener listener)
     {
         super.addListener(listener);
-        listener.sendAllWindowProperties(this, this.tilefurnace);
+        listener.sendAllWindowProperties(this, this.TileEntityCustomFurnace);
     }
 	
 	public void detectAndSendChanges()
@@ -57,42 +57,42 @@ public class ContainerCustomFurnace extends Container
         {
             IContainerListener icontainerlistener = this.listeners.get(i);
 
-            if (this.cooktime != this.tilefurnace.getField(2))
+            if (this.cooktime != this.TileEntityCustomFurnace.getField(2))
             {
-                icontainerlistener.sendWindowProperty(this, 2, this.tilefurnace.getField(2));
+                icontainerlistener.sendWindowProperty(this, 2, this.TileEntityCustomFurnace.getField(2));
             }
 
-            if (this.furnaceburntime != this.tilefurnace.getField(0))
+            if (this.furnaceburntime != this.TileEntityCustomFurnace.getField(0))
             {
-                icontainerlistener.sendWindowProperty(this, 0, this.tilefurnace.getField(0));
+                icontainerlistener.sendWindowProperty(this, 0, this.TileEntityCustomFurnace.getField(0));
             }
 
-            if (this.currentItemBurnTime != this.tilefurnace.getField(1))
+            if (this.currentItemBurnTime != this.TileEntityCustomFurnace.getField(1))
             {
-                icontainerlistener.sendWindowProperty(this, 1, this.tilefurnace.getField(1));
+                icontainerlistener.sendWindowProperty(this, 1, this.TileEntityCustomFurnace.getField(1));
             }
 
-            if (this.totalcooktime != this.tilefurnace.getField(3))
+            if (this.totalcooktime != this.TileEntityCustomFurnace.getField(3))
             {
-                icontainerlistener.sendWindowProperty(this, 3, this.tilefurnace.getField(3));
+                icontainerlistener.sendWindowProperty(this, 3, this.TileEntityCustomFurnace.getField(3));
             }
         }
 
-        this.cooktime = this.tilefurnace.getField(2);
-        this.furnaceburntime = this.tilefurnace.getField(0);
-        this.currentItemBurnTime = this.tilefurnace.getField(1);
-        this.totalcooktime = this.tilefurnace.getField(3);
+        this.cooktime = this.TileEntityCustomFurnace.getField(2);
+        this.furnaceburntime = this.TileEntityCustomFurnace.getField(0);
+        this.currentItemBurnTime = this.TileEntityCustomFurnace.getField(1);
+        this.totalcooktime = this.TileEntityCustomFurnace.getField(3);
     }
     
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int id, int data)
     {
-        this.tilefurnace.setField(id, data);
+        this.TileEntityCustomFurnace.setField(id, data);
     }
     
     public boolean canInteractWith(EntityPlayer playerIn)
     {
-        return this.tilefurnace.isUsableByPlayer(playerIn);
+        return this.TileEntityCustomFurnace.isUsableByPlayer(playerIn);
     }
     
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
@@ -123,7 +123,7 @@ public class ContainerCustomFurnace extends Container
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (TileEntityCustomFurnace.isItemFuel(itemstack1))
+                else if (((christopher.tutorial.tileentity.TileEntityCustomFurnace) TileEntityCustomFurnace).isItemFuel(itemstack1))
                 {
                     if (!this.mergeItemStack(itemstack1, 1, 2, false))
                     {
