@@ -185,6 +185,10 @@ public class TileEntityCustomFurnace extends TileEntityLockable implements ITick
         this.furnaceStacks.clear();
     }
     
+    net.minecraftforge.items.IItemHandler handlerTop = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.UP);
+    net.minecraftforge.items.IItemHandler handlerBottom = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.DOWN);
+    net.minecraftforge.items.IItemHandler handlerSide = new net.minecraftforge.items.wrapper.SidedInvWrapper(this, net.minecraft.util.EnumFacing.WEST);    
+    
     public NBTTagCompound writeToNBT(NBTTagCompound compound)
     {	
 		super.writeToNBT(compound);
@@ -209,7 +213,7 @@ public class TileEntityCustomFurnace extends TileEntityLockable implements ITick
         this.burnTime = compound.getInteger("BurnTime");
         this.cookTime = compound.getInteger("CookTime");
         this.totalCookTime = compound.getInteger("CookTimeTotal");
-        this.currentBurnTime = getItemBurnTime(this.furnaceStacks.get(2));
+        this.currentBurnTime = getItemBurnTime(this.furnaceStacks.get(1));
         
         if (compound.hasKey("CustomName", 8))
         {
@@ -323,7 +327,7 @@ public class TileEntityCustomFurnace extends TileEntityLockable implements ITick
     {
     	Item item = stack.getItem();
     	
-    	return 25;
+    	return 1;
     }
 
     private boolean canSmelt()
@@ -538,5 +542,19 @@ public class TileEntityCustomFurnace extends TileEntityLockable implements ITick
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
         return new ContainerCustomFurnace(playerInventory, this);
+    }
+    
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @javax.annotation.Nullable net.minecraft.util.EnumFacing facing)
+    {
+        if (facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+            if (facing == EnumFacing.DOWN)
+                return (T) handlerBottom;
+            else if (facing == EnumFacing.UP)
+                return (T) handlerTop;
+            else
+                return (T) handlerSide;
+        return super.getCapability(capability, facing);
     }
 }
